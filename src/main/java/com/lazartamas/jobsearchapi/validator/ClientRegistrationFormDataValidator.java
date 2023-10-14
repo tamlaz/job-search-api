@@ -34,8 +34,6 @@ public class ClientRegistrationFormDataValidator implements Validator {
             errors.rejectValue("name", "name.is.too.long");
         }
 
-        System.out.println(formData.getEmail().matches(emailRegex));
-
         if (!(formData.getEmail().matches(emailRegex))) {
             errors.rejectValue("email", "email.not.valid");
         }
