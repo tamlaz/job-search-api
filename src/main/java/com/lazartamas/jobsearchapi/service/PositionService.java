@@ -70,7 +70,15 @@ public class PositionService {
 
     }
 
-
-
-
+    protected JsonNode convertJobsFromReedApi(String keyword, String location) {
+        return webClient.get()
+                .uri(uriBuilder -> uriBuilder
+                        .path("/api/1.0/search")
+                        .queryParam("keywords", keyword)
+                        .queryParam("locationName", location)
+                        .build())
+                .retrieve()
+                .bodyToMono(JsonNode.class)
+                .block();
+    }
 }
