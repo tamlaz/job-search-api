@@ -25,12 +25,13 @@ public class PositionFormDataValidator implements Validator {
 
         PositionFormData formData = (PositionFormData) target;
 
+
         if (formData.getJobTitle().length() > 50) {
             errors.rejectValue("jobTitle", "jobTitle.too.long");
         }
 
         if (formData.getLocation().length() > 50) {
-            errors.rejectValue("jobTitle", "location.too.long");
+            errors.rejectValue("location", "location.too.long");
         }
 
     }
