@@ -24,3 +24,9 @@ logging:
 
 reed-jobs-url: https://www.reed.co.uk
 reed-jobs-apikey: 3fa94ce5-0733-4d60-8a9e-648c8d4edb34
+
+springdoc:
+  api-docs:
+    path: /v3/api-docs
+  swagger-ui:
+    path: /swagger-ui
