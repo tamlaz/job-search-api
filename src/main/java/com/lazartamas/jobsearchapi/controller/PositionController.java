@@ -2,28 +2,35 @@ package com.lazartamas.jobsearchapi.controller;
 
 import com.lazartamas.jobsearchapi.dto.incoming.PositionFormData;
 import com.lazartamas.jobsearchapi.service.PositionService;
+import com.lazartamas.jobsearchapi.validator.PositionFormDataValidator;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/positions")
 public class PositionController {
 
     private final PositionService positionService;
+    private final PositionFormDataValidator positionFormDataValidator;
 
-    public PositionController(PositionService positionService) {
+    public PositionController(PositionService positionService, PositionFormDataValidator positionFormDataValidator) {
         this.positionService = positionService;
+        this.positionFormDataValidator = positionFormDataValidator;
+    }
+
+
+    @InitBinder()
+    public void initBinder(WebDataBinder binder) {
+        binder.addValidators(positionFormDataValidator);
     }
 
 
     @PostMapping
-    public ResponseEntity<String> createPosition(@RequestBody @Validated PositionFormData formData) {
-        String positionUrl = positionService.createPosition(formData);
+    public ResponseEntity<String> createPosition(@RequestBody @Validated PositionFormData positionFormData) {
+        String positionUrl = positionService.createPosition(positionFormData);
         return new ResponseEntity<>(positionUrl, HttpStatus.CREATED);
     }
 }
