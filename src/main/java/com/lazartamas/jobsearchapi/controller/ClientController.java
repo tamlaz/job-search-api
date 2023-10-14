@@ -26,9 +26,9 @@ public class ClientController {
         binder.addValidators(formDataValidator);
     }
 
-    @PostMapping
-    public ResponseEntity<String> registerClient(@RequestBody @Validated ClientRegistrationFormData formData) {
-        String apiKey = clientService.registerClient(formData);
+    @PostMapping("register")
+    public ResponseEntity<String> registerClient(@RequestBody @Validated ClientRegistrationFormData registrationFormData) {
+        String apiKey = clientService.registerClient(registrationFormData);
         return ResponseEntity.status(HttpStatus.CREATED)
                .header("apikey", apiKey)
                .body("Successful registration, find your API key in the response header");
