@@ -22,6 +22,10 @@ public class ApiKeyInterceptor implements HandlerInterceptor {
         String apiKey = request.getHeader("apiKey");
         Client client = clientRepository.findClientByApiKey(apiKey).orElse(null);
 
+        if ("/api/clients/register".equals(request.getRequestURI())) {
+            return true;
+        }
+
         if (apiKey == null || client == null) {
             response.setStatus(HttpStatus.UNAUTHORIZED.value());
             response.getWriter().write("Invalid API Key");
