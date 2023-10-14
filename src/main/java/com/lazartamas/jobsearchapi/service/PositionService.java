@@ -1,5 +1,8 @@
 package com.lazartamas.jobsearchapi.service;
 
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.lazartamas.jobsearchapi.domain.Position;
 import com.lazartamas.jobsearchapi.dto.incoming.PositionFormData;
 import com.lazartamas.jobsearchapi.dto.outgoing.PositionListItem;
@@ -52,10 +55,22 @@ public class PositionService {
     }
 
     public List<PositionListItem> searchJobsByKeywordAndLocation(PositionFormData positionFormData) {
-        List<PositionListItem> jobsInDatabase = positionRepository
+        List<PositionListItem> jobsFromDatabase = positionRepository
                 .findByKeywordAndLocation(positionFormData.getJobTitle(), positionFormData.getLocation());
-        return jobsInDatabase;
+        List<PositionListItem> jobsFromReed = searchJobsWithReedApi(positionFormData.getJobTitle(), positionFormData.getLocation());
+        jobsFromDatabase.addAll(jobsFromReed);
+        return jobsFromDatabase;
     }
+
+    protected List<PositionListItem> searchJobsWithReedApi(String keyword, String location) {
+        JsonNode jobsResponse = convertJobsFromReedApi(keyword,location);
+        ObjectMapper mapper = new ObjectMapper();
+        return mapper.convertValue(jobsResponse.get("results"), new TypeReference<List<PositionListItem>>() {
+        });
+
+    }
+
+
 
 
 }
