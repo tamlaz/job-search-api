@@ -3,8 +3,6 @@ package com.lazartamas.jobsearchapi.service;
 import com.lazartamas.jobsearchapi.domain.Client;
 import com.lazartamas.jobsearchapi.dto.incoming.ClientRegistrationFormData;
 import com.lazartamas.jobsearchapi.repository.ClientRepository;
-import lombok.NoArgsConstructor;
-import org.springframework.http.HttpHeaders;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
