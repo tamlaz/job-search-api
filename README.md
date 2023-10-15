@@ -1,6 +1,5 @@
 # job-search-api
-Álláskereső API ami saját adatbázisból és a REED Jobseeker API segítségével is keres állásokat.
-
+Álláskereső API ami saját adatbázisból és a <a href="https://www.reed.co.uk/developers/Jobseeker">REED Jobseeker API<a/> segítségével is keres állásokat.
 ### Felhasználók
 Az alkalmazás egy felhasználótípussal rendelkezik:
  -Kliens (továbbiakban felhasználó)
@@ -23,7 +22,9 @@ Az alkalmazás egy felhasználótípussal rendelkezik:
 2. Importáld a projektet az általad preferált IDE-be.
 3. Az application.yaml file alapján hozd létre az adatbázis kapcsolat és sémát, majd indítsd el az alkalmazást.
 4. POSTMAN-ből indíts kérést regisztráció végpontokra
-5. Sikeres regisztráció utn el tudod kezdeni használni a többi funkciót
+5. Sikeres regisztrációt követően használhatod a többi funkciót.
+6. Az adatokat JSON formátumban küldd a szerver felé.
+7. Az automata teszteket az src/test/java mappában találod.
 
 ### API végpontok(az alkalmazás indítása után megtekinthető: http://localhost:8080/swagger-ui/index.html)
 - /api/clients/register (POST) - új felhasználó regisztráció
@@ -34,7 +35,7 @@ Az alkalmazás egy felhasználótípussal rendelkezik:
 - sikeres regisztráció után ez az üzenet érkezik a szervertől: Successful registration, find your API key in the response header
 - Az API kulcsot a szerver által küldött válasz fejléc tartalmazza:
 - <img width="849" alt="image" src="https://github.com/tamlaz/job-search-api/assets/108185191/e1a554be-2cb6-4fb6-8bb7-be85cfc54315">
-- Ezt követően az API kulcsot a szerver felé indított kérések fejécéhez kell csatolni az alábbi módon:
+- Ezt követően az API kulcsot a szerver felé indított kérések fejlécéhez kell csatolni az alábbi módon:
 - <img width="848" alt="image" src="https://github.com/tamlaz/job-search-api/assets/108185191/1e979e8f-3845-4450-9748-33c4f4b70401">
 
 ### További lépések, hogy az alkalmazás production ready legyen
