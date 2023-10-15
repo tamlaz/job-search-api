@@ -42,5 +42,14 @@ public class GlobalExceptionHandler {
         return validationError;
     }
 
+    @ExceptionHandler(Throwable.class)
+    public ResponseEntity<ApiError> defaultErrorHandler(Throwable t) {
+        HttpStatus status = HttpStatus.INTERNAL_SERVER_ERROR;
+
+        ApiError body = new ApiError("UNCLASSIFIED_ERROR", "Oh, snap! Something really unexpected occurred.", t.getLocalizedMessage());
+
+        return new ResponseEntity<>(body, status);
+    }
+
 
 }
