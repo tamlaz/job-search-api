@@ -1,7 +1,6 @@
 package com.lazartamas.jobsearchapi.repository;
 
 import com.lazartamas.jobsearchapi.domain.Position;
-import com.lazartamas.jobsearchapi.dto.outgoing.PositionListItem;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
