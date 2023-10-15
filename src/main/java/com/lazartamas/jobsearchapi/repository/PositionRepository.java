@@ -12,5 +12,5 @@ public interface PositionRepository extends JpaRepository<Position, Long> {
 
     @Query("SELECT p FROM Position p WHERE LOWER(p.jobTitle) LIKE LOWER(CONCAT('%', :keyword, '%'))" +
             " AND LOWER(p.location) LIKE LOWER(CONCAT('%', :location, '%')) ")
-    List<PositionListItem> findByKeywordAndLocation(@Param("keyword") String keyword, @Param("location") String location);
+    List<Position> findByKeywordAndLocation(@Param("keyword") String keyword, @Param("location") String location);
 }
