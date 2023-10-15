@@ -37,4 +37,12 @@ Az alkalmazás egy felhasználótípussal rendelkezik:
 - Ezt követően az API kulcsot a szerver felé indított kérések fejécéhez kell csatolni az alábbi módon:
 - <img width="848" alt="image" src="https://github.com/tamlaz/job-search-api/assets/108185191/1e979e8f-3845-4450-9748-33c4f4b70401">
 
-
+### További lépések, hogy az alkalmazás production ready legyen
+- Teljes körű tesztelés: az applikáció teljes körű lefedése unit és integrációs tesztekkel
+- Biztonság növelése: Spring Security implementáció, például végpontok védelme method security segítségével, API key beágyazása JWT-be
+- Dokumentáció: részletes dokumentáció készítése, kitérve a működtetésre, karbantartásra és hibakezelésre
+- Teljesítményvizsgálat: tesztelni az alkalmazás skálázhatóságát és terhelhetőségét, például nagy adatmennyiség esetén érdemes lehet Pagination-t alkalmazni, hogy kíméljük a rendszer 
+  erőforrásait
+- Forráskód felülvizsgálata: ellenőrizni, hogy van e olyan eleme a kódnak, ami kiszervezhető konfigurációs file-ba a forráskódból
+- Logolás / monitorozás: minden fontosabb történés nyomonkövetése az alkalmazáson belül valamilyen logging keretrendszer bevezetésével, például Log4j
+- CI/CD folyamatok bevezetése: fejlesztési, tesztelési és telepítési folyamatok automatizálása
