@@ -14,6 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.reactive.function.client.ExchangeFilterFunctions;
 import org.springframework.web.reactive.function.client.WebClient;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -57,8 +58,10 @@ public class PositionService {
                 .findByKeywordAndLocation(positionFormData.getJobTitle(), positionFormData.getLocation())
                 .stream().map(PositionListItem::new).toList();
         List<PositionListItem> jobsFromReed = searchJobsWithReedApi(positionFormData.getJobTitle(), positionFormData.getLocation());
-        jobsFromDatabase.addAll(jobsFromReed);
-        return jobsFromDatabase;
+        List<PositionListItem> result = new ArrayList<>();
+        result.addAll(jobsFromDatabase);
+        result.addAll(jobsFromReed);
+        return result;
     }
 
     protected List<PositionListItem> searchJobsWithReedApi(String keyword, String location) {
