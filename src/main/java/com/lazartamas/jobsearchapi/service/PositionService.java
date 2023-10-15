@@ -29,8 +29,6 @@ public class PositionService {
     @Value("${reed-jobs-apikey}")
     private String apiKey;
 
-    private final String BASE_URL = "http://localhost:8080/positions";
-
     public PositionService(PositionRepository positionRepository) {
         this.positionRepository = positionRepository;
     }
@@ -51,12 +49,13 @@ public class PositionService {
     }
 
     protected String generateUrl(Long id) {
-        return BASE_URL + "/" + id;
+        return "http://localhost:8080/positions/" + id;
     }
 
     public List<PositionListItem> searchJobsByKeywordAndLocation(PositionFormData positionFormData) {
         List<PositionListItem> jobsFromDatabase = positionRepository
-                .findByKeywordAndLocation(positionFormData.getJobTitle(), positionFormData.getLocation());
+                .findByKeywordAndLocation(positionFormData.getJobTitle(), positionFormData.getLocation())
+                .stream().map(PositionListItem::new).toList();
         List<PositionListItem> jobsFromReed = searchJobsWithReedApi(positionFormData.getJobTitle(), positionFormData.getLocation());
         jobsFromDatabase.addAll(jobsFromReed);
         return jobsFromDatabase;
@@ -65,7 +64,7 @@ public class PositionService {
     protected List<PositionListItem> searchJobsWithReedApi(String keyword, String location) {
         JsonNode jobsResponse = convertJobsFromReedApi(keyword,location);
         ObjectMapper mapper = new ObjectMapper();
-        return mapper.convertValue(jobsResponse.get("results"), new TypeReference<List<PositionListItem>>() {
+        return mapper.convertValue(jobsResponse.get("results"), new TypeReference<>() {
         });
 
     }
