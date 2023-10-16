@@ -35,10 +35,13 @@ Az alkalmazás egy felhasználótípussal rendelkezik:
 - Sikeres regisztráció után ez az üzenet érkezik a szervertől: Successful registration, find your API key in the response header
 - Az API kulcsot a szerver által küldött válasz fejléce tartalmazza:
  <img width="849" alt="image" src="https://github.com/tamlaz/job-search-api/assets/108185191/e1a554be-2cb6-4fb6-8bb7-be85cfc54315">
+ <br>
 - Ezt követően az API kulcsot a szerver felé indított kérések fejlécéhez kell csatolni az alábbi módon:
  <img width="848" alt="image" src="https://github.com/tamlaz/job-search-api/assets/108185191/1e979e8f-3845-4450-9748-33c4f4b70401">
+ <br>
 - Az adatokat JSON formátumban küldd a szerver felé:
   <img width="845" alt="image" src="https://github.com/tamlaz/job-search-api/assets/108185191/13cb092d-78aa-4a69-90b4-1da880b674fb">
+  <br>
 - Hiányzó vagy helytelen API kulcs esetén a szerver hibaüzenettel tér vissza: Invalid API key.
   
 
